@@ -1,0 +1,16 @@
+<html ng-app="uptimeApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Uptime</title>
+    <link rel="stylesheet" type="text/css" href="css/uptime.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/uptime.js"></script>
+  </head>
+  <body>
+    <div ng-controller = 'uptimeCTRL'>
+      <div ng-repeat = 'device in devices'>
+      {{device}}
+      </div>
+    </div>
+  </body>
+</html>
