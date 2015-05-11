@@ -7,6 +7,7 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 		
 		var DevID = [];	
 		j = 0;
+		var largestRtime = 0;
 
 		//Gets Devices IDs and Stores in array
 		angular.forEach(scope.devices, function(obj,i) {												
@@ -30,7 +31,7 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 				// console.log(data.Uptime.UpSeconds);
 			});		
 
-			var z = j;
+			var z = j;			
 
 			getDeviceDetails(DevID[i]).then(function(data) {
 				// console.log(data[z]);
@@ -59,26 +60,44 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 				  	statusColorArray[j].className = statusColorArray[j].className + " down";
 				 }
 
-				//Applying Width to Reponse Times
+				//Setting largest Response time as 100% bar
+				 // console.log(Rtime);		
+				 var requestArray = document.getElementsByClassName("request");
+
+				 if (largestRtime < Rtime) {
+				 	// console.log("largest RTIME" + largestRtime);
+				 	// console.log("RTIME" + Rtime);
+				 	largestRtime = Rtime;
+				 } else {
+				 	largestRtime = largestRtime;
+				 }
+				 console.log(largestRtime);
+
+				 var RtimeWidth = requestArray[0].offsetWidth;
+				 var pxPerMs = 	RtimeWidth/largestRtime;	 
+				 console.log(pxPerMs);
+
+				//Applying Width to Reponse Times		
+				var requestWidthArray = document.getElementsByClassName("request-width");
+				requestWidthArray[j].style.width = 100 + '%';
+
 				var dnsArray = document.getElementsByClassName("dns");		
 				var sslArray = document.getElementsByClassName("ssl");
 				var connectArray = document.getElementsByClassName("connect");
 				var ttfbArray = document.getElementsByClassName("ttfb");
 				var ttlbArray = document.getElementsByClassName("ttlb");
 
-				var DNSbar = DNStime;
-				var SSLbar = SSLtime;
-				var Cbar = Ctime;
-				var FBbar = FBtime;
-				var LBbar = LBtime;
+				var DNSbar = DNStime * pxPerMs;
+				var SSLbar = SSLtime * pxPerMs;
+				var Cbar = Ctime * pxPerMs;
+				var FBbar = FBtime * pxPerMs;
+				var LBbar = LBtime * pxPerMs;
 
 				 dnsArray[j].style.width = DNSbar.toFixed(0) + 'px';
 				 sslArray[j].style.width = SSLbar.toFixed(0) + 'px';
 				 connectArray[j].style.width = Cbar.toFixed(0) + 'px';
 				 ttfbArray[j].style.width = FBbar.toFixed(0) + 'px';
 				 ttlbArray[j].style.width = LBbar.toFixed(0) + 'px';
-
-				 console.log(Rtime);
 
 				j++;
 			});				

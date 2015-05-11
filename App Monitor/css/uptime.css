@@ -53,10 +53,10 @@ body .devices-block .devices-repeat {
   text-transform: uppercase;
   margin-bottom: 5px;
   /*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
-  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-  -webkit-text-fill-color: #ccc;
-  -moz-text-fill-color: #ccc;
-  text-fill-color: #ccc;
+  /*text-shadow: 0 0 2px rgba(255,255,255,0.5);*/
+  /*	-webkit-text-fill-color: #ccc;
+			-moz-text-fill-color: #ccc;
+			text-fill-color: #ccc;*/
 }
 body .devices-block .devices-repeat .name {
   display: table-cell;
@@ -66,7 +66,8 @@ body .devices-block .devices-repeat .name {
 body .devices-block .devices-repeat .request {
   display: table-cell;
   vertical-align: middle;
-  padding: 0 5% 1px 5px;
+  /*padding: 0 5% 1px 5px;*/
+  padding: 0 0 1px 5px;
   width: 55%;
 }
 body .devices-block .devices-repeat .request .dns,
@@ -74,9 +75,10 @@ body .devices-block .devices-repeat .request .ssl,
 body .devices-block .devices-repeat .request .connect,
 body .devices-block .devices-repeat .request .ttfb,
 body .devices-block .devices-repeat .request .ttlb {
-  text-shadow: 0 0 2px #ffffff;
+  /*text-shadow: 0 0 2px rgba(255, 255, 255, 1.5);*/
   display: table-cell;
   height: 20px;
+  color: transparent;
 }
 body .devices-block .devices-repeat .request .dns {
   background-color: #51599E;
@@ -92,6 +94,13 @@ body .devices-block .devices-repeat .request .ttfb {
 }
 body .devices-block .devices-repeat .request .ttlb {
   background-color: #DE340C;
+}
+body .devices-block .devices-repeat .request .request-width {
+  width: 1%;
+  -webkit-transition: width 2s ease-in-out;
+  -moz-transition: width 2s ease-in-out;
+  -o-transition: width 2s ease-in-out;
+  transition: width 2s ease-in-out;
 }
 body .devices-block .devices-repeat .status {
   display: table-cell;

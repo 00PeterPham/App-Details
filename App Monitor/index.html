@@ -17,11 +17,13 @@
       <div ng-repeat = 'device in devices' class='devices-repeat'>
         <div class="name">{{device.ShortName}}</div>   
         <div class="request">
-          <div class="dns">{{device.DNStime}} </div> 
-          <div class="ssl">{{device.SSLtime}} </div>  
-          <div class="connect">{{device.Ctime}}</div> 
-          <div class="ttfb">{{device.FBtime}}</div> 
-          <div class="ttlb">{{device.LBtime}} </div>
+          <div class="request-width">
+            <div class="dns">{{device.DNStime}} </div> 
+            <div class="ssl">{{device.SSLtime}} </div>  
+            <div class="connect">{{device.Ctime}}</div> 
+            <div class="ttfb">{{device.FBtime}}</div> 
+            <div class="ttlb">{{device.LBtime}} </div>
+          </div>
         </div>             
         <div class="status">
           <div class="status-color"></div>

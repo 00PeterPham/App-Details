@@ -65,11 +65,11 @@ body {
 			
 			/*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
 				
-			text-shadow: 0 0 2px rgba(255,255,255,0.5);
+			/*text-shadow: 0 0 2px rgba(255,255,255,0.5);*/
 
-			-webkit-text-fill-color: #ccc;
+		/*	-webkit-text-fill-color: #ccc;
 			-moz-text-fill-color: #ccc;
-			text-fill-color: #ccc;
+			text-fill-color: #ccc;*/
 
 			.name {
 				display: table-cell;
@@ -79,13 +79,15 @@ body {
 			.request{
 				display: table-cell;
 				vertical-align: middle;
-				padding: 0 5% 1px 5px;
-				width: 55%;									
+				/*padding: 0 5% 1px 5px;*/
+				padding: 0 0 1px 5px;
+				width: 55%;											
 
 				.dns, .ssl, .connect, .ttfb, .ttlb {
-					text-shadow: 0 0 2px rgba(255, 255, 255, 1.5);
+					/*text-shadow: 0 0 2px rgba(255, 255, 255, 1.5);*/
 					display: table-cell;
-					height: 20px;						
+					height: 20px;		
+					color: transparent;
 				}
 
 				.dns{
@@ -102,6 +104,15 @@ body {
 				}
 				.ttlb{
 					background-color: #DE340C;					
+				}
+
+				.request-width {
+					width: 1%;
+
+					-webkit-transition: width 2s ease-in-out;
+				    -moz-transition: width 2s ease-in-out;
+				    -o-transition: width 2s ease-in-out;
+				    transition: width 2s ease-in-out;	
 				}
 			}
 			.status {
