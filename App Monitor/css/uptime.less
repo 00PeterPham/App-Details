@@ -1,0 +1,160 @@
+body {
+	margin: 0;
+	background: #333333;
+
+	.devices-block{
+		display: table;
+		width: 100%;
+
+		.title-bar{
+			/*font-family: @font_regular;*/
+			font-size: 20px;
+			line-height: 20px;
+			//color: #333;
+			color: #fff;
+			font-weight: normal;
+			white-space: nowrap;
+			text-transform: uppercase;
+			//text-indent: -1px;
+			margin-bottom: 5px;
+			
+			/*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
+				
+			text-shadow: 0 0 2px rgba(255,255,255,0.5);
+
+			-webkit-text-fill-color: #ccc;
+			-moz-text-fill-color: #ccc;
+			text-fill-color: #ccc;
+
+			display: table;
+			width: 100%;
+
+			.title-app {
+				display: table-cell;
+				width: 15%;
+			}
+			.title-response {
+				display: table-cell;
+				width: 55%;
+
+				span{
+					text-transform: lowercase;
+				}
+			}
+			.title-status {
+				display: table-cell;  	  							
+			}
+			.title-uptime{
+				text-align: right;
+			}
+		}
+		.devices-repeat:nth-child(odd) {
+			background-color: #3C3C3C;
+		}
+		.devices-repeat {
+			display: table;
+			width: 100%;
+
+			line-height: 20px;		
+			color: #fff;
+			font-weight: normal;
+			white-space: nowrap;
+			text-transform: uppercase;
+			//text-indent: -1px;
+			margin-bottom: 5px;
+			
+			/*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
+				
+			text-shadow: 0 0 2px rgba(255,255,255,0.5);
+
+			-webkit-text-fill-color: #ccc;
+			-moz-text-fill-color: #ccc;
+			text-fill-color: #ccc;
+
+			.name {
+				display: table-cell;
+				width: 15%;
+				padding: 4px 0 0 5px;
+			}		
+			.request{
+				display: table-cell;
+				vertical-align: middle;
+				padding: 0 5% 1px 5px;
+				width: 55%;									
+
+				.dns, .ssl, .connect, .ttfb, .ttlb {
+					text-shadow: 0 0 2px rgba(255, 255, 255, 1.5);
+					display: table-cell;
+					height: 20px;						
+				}
+
+				.dns{
+					background-color: #51599E;						
+				}
+				.ssl{
+					background-color: #5295A0;					
+				}
+				.connect{
+					background-color: #6E9C0E;						
+				}
+				.ttfb{
+					background-color: #FFA60B;					
+				}
+				.ttlb{
+					background-color: #DE340C;					
+				}
+			}
+			.status {
+				display: table-cell;
+				vertical-align: middle;
+				padding: 0 0 1px 20px;
+				width: 15%;	
+
+				.status-color {
+					background-color: #666;
+					width: 25px;
+  					height: 25px;
+
+					&.up {
+						background-color: #3AB54A;							
+					}
+					&.down {
+						background-color: #B8192B;
+					}
+					
+				}
+			}
+			.uptime{				
+				text-align: right;					
+			}
+		}
+	}
+	.k2-noc-screen-footer{
+		background: rgba(16, 20, 23, 0.5);
+		display: table;
+  		width: 100%;
+  		height: 100px;
+  		position: absolute;
+  		bottom: 0;
+
+		.title{
+			display: table-cell;
+ 			vertical-align: middle;
+
+			h1{
+			  font-size: 50px;
+			  font-family: "RobotoLight";
+			  color: #cccccc;
+			  margin: 0;
+			}			
+		}
+		.logo {
+			display: table-cell;
+				vertical-align: middle;
+
+			img {
+
+			}
+		}
+	}
+}

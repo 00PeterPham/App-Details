@@ -2,26 +2,90 @@ var uptimeApp = angular.module('uptimeApp',[]);
 
 uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){	
 	//Call to device API
-	http.get('api/devices.php').success(function(data){
-		scope.devices = data;
-
-		var Uptime = [];
-		var Details = [];
+	http.get('api/devices.php').success(function(data){		
+		scope.devices = data;	
+		
+		var DevID = [];	
+		j = 0;
 
 		//Gets Devices IDs and Stores in array
 		angular.forEach(scope.devices, function(obj,i) {												
-			// console.log(obj.device_id);	
-			scope.devices[i] = obj.device_id;
-			Uptime = getDeviceUptime(scope.devices[i]);
-			Details = getDeviceDetails(scope.devices[i]);
+			// console.log(obj.device_id);				
+			// scope.devices[i] = obj.device_id;
+			DevID[i] = obj.device_id;			
+
+			// Uptime = getDeviceUptime(scope.devices[i]);
+			// Details = getDeviceDetails(scope.devices[i]);			
+
+			getDeviceUptime(DevID[i]).then(function(data) {
+				// console.log(data);
+
+				var UpSecs = data.Uptime.UpSeconds;
+				var DownSecs = data.Uptime.DownSeconds;
+				var Uptime_t = (UpSecs / (UpSecs + DownSecs)) * 100;
+
+				//ADDs uptime values to existing JSON
+				scope.devices[i].uptimes = Uptime_t.toFixed(3);	
 		
+				// console.log(data.Uptime.UpSeconds);
+			});		
+
+			var z = j;
+
+			getDeviceDetails(DevID[i]).then(function(data) {
+				// console.log(data[z]);
+
+				var chkRslt = data[z].CheckResult;
+				var statusColorArray = document.getElementsByClassName("status-color");	
+
+				var Rtime = data[z].RequestTime;
+
+				var DNStime = data[z].DNSTime;
+				var SSLtime = data[z].SSLTime;
+				var Ctime = data[z].ConnectTime;
+				var FBtime = data[z].TTFB;
+				var LBtime = data[z].TTLB;			
+
+				scope.devices[i].DNStime = DNStime.toFixed(2);	
+				scope.devices[i].SSLtime = SSLtime.toFixed(2);
+				scope.devices[i].Ctime = Ctime.toFixed(2);
+				scope.devices[i].FBtime = FBtime.toFixed(2);
+				scope.devices[i].LBtime = LBtime.toFixed(2);
+
+				// console.log(chkRslt);
+				if (chkRslt == '200 OK'){
+				 	statusColorArray[j].className = statusColorArray[j].className + " up";
+				 }else {
+				  	statusColorArray[j].className = statusColorArray[j].className + " down";
+				 }
+
+				//Applying Width to Reponse Times
+				var dnsArray = document.getElementsByClassName("dns");		
+				var sslArray = document.getElementsByClassName("ssl");
+				var connectArray = document.getElementsByClassName("connect");
+				var ttfbArray = document.getElementsByClassName("ttfb");
+				var ttlbArray = document.getElementsByClassName("ttlb");
+
+				var DNSbar = DNStime;
+				var SSLbar = SSLtime;
+				var Cbar = Ctime;
+				var FBbar = FBtime;
+				var LBbar = LBtime;
+
+				 dnsArray[j].style.width = DNSbar.toFixed(0) + 'px';
+				 sslArray[j].style.width = SSLbar.toFixed(0) + 'px';
+				 connectArray[j].style.width = Cbar.toFixed(0) + 'px';
+				 ttfbArray[j].style.width = FBbar.toFixed(0) + 'px';
+				 ttlbArray[j].style.width = LBbar.toFixed(0) + 'px';
+
+				 console.log(Rtime);
+
+				j++;
+			});				
+			
 		});
 
-		console.log(Uptime);		
-		// console.log(Uptime.$$state.value.data.Uptime.UpSeconds);	
 
-		console.log(Details);	
-		console.log(Details.$$state.value);
 	
 		function getDeviceUptime(device) {
 			// console.log('HI PETER');

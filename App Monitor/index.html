@@ -7,10 +7,36 @@
     <script src="js/uptime.js"></script>
   </head>
   <body>
-    <div ng-controller = 'uptimeCTRL'>
-      <div ng-repeat = 'device in devices'>
-      {{device}}
+    <div ng-controller = 'uptimeCTRL' class='devices-block'>
+      <div class="title-bar">
+        <div class="title-app">Application</div>  
+        <div class="title-response">Response Time <span>(ms)</span></div>     
+        <div class="title-status">Status</div>
+        <div class="title-uptime">Uptime</div>        
+      </div>    
+      <div ng-repeat = 'device in devices' class='devices-repeat'>
+        <div class="name">{{device.ShortName}}</div>   
+        <div class="request">
+          <div class="dns">{{device.DNStime}} </div> 
+          <div class="ssl">{{device.SSLtime}} </div>  
+          <div class="connect">{{device.Ctime}}</div> 
+          <div class="ttfb">{{device.FBtime}}</div> 
+          <div class="ttlb">{{device.LBtime}} </div>
+        </div>             
+        <div class="status">
+          <div class="status-color"></div>
+          {{device.status}}
+        </div>         
+        <div class="uptime">{{device.uptimes}}%</div>               
       </div>
     </div>
-  </body>
+     <div class = 'k2-noc-screen-footer'>     
+        <div class = 'title'>
+          <h1>HyperCare: Availibility Report</h1>
+        </div>          
+        <div class = 'logo'>
+          <img src = 'img/logo.png' />
+        </div>    
+    </div>
+  </body> 
 </html>

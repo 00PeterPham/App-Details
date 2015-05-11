@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  background: #333333;
+}
+body .devices-block {
+  display: table;
+  width: 100%;
+}
+body .devices-block .title-bar {
+  /*font-family: @font_regular;*/
+  font-size: 20px;
+  line-height: 20px;
+  color: #fff;
+  font-weight: normal;
+  white-space: nowrap;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  /*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+  -webkit-text-fill-color: #ccc;
+  -moz-text-fill-color: #ccc;
+  text-fill-color: #ccc;
+  display: table;
+  width: 100%;
+}
+body .devices-block .title-bar .title-app {
+  display: table-cell;
+  width: 15%;
+}
+body .devices-block .title-bar .title-response {
+  display: table-cell;
+  width: 55%;
+}
+body .devices-block .title-bar .title-response span {
+  text-transform: lowercase;
+}
+body .devices-block .title-bar .title-status {
+  display: table-cell;
+}
+body .devices-block .title-bar .title-uptime {
+  text-align: right;
+}
+body .devices-block .devices-repeat:nth-child(odd) {
+  background-color: #3C3C3C;
+}
+body .devices-block .devices-repeat {
+  display: table;
+  width: 100%;
+  line-height: 20px;
+  color: #fff;
+  font-weight: normal;
+  white-space: nowrap;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  /*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+  -webkit-text-fill-color: #ccc;
+  -moz-text-fill-color: #ccc;
+  text-fill-color: #ccc;
+}
+body .devices-block .devices-repeat .name {
+  display: table-cell;
+  width: 15%;
+  padding: 4px 0 0 5px;
+}
+body .devices-block .devices-repeat .request {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 5% 1px 5px;
+  width: 55%;
+}
+body .devices-block .devices-repeat .request .dns,
+body .devices-block .devices-repeat .request .ssl,
+body .devices-block .devices-repeat .request .connect,
+body .devices-block .devices-repeat .request .ttfb,
+body .devices-block .devices-repeat .request .ttlb {
+  text-shadow: 0 0 2px #ffffff;
+  display: table-cell;
+  height: 20px;
+}
+body .devices-block .devices-repeat .request .dns {
+  background-color: #51599E;
+}
+body .devices-block .devices-repeat .request .ssl {
+  background-color: #5295A0;
+}
+body .devices-block .devices-repeat .request .connect {
+  background-color: #6E9C0E;
+}
+body .devices-block .devices-repeat .request .ttfb {
+  background-color: #FFA60B;
+}
+body .devices-block .devices-repeat .request .ttlb {
+  background-color: #DE340C;
+}
+body .devices-block .devices-repeat .status {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 0 1px 20px;
+  width: 15%;
+}
+body .devices-block .devices-repeat .status .status-color {
+  background-color: #666;
+  width: 25px;
+  height: 25px;
+}
+body .devices-block .devices-repeat .status .status-color.up {
+  background-color: #3AB54A;
+}
+body .devices-block .devices-repeat .status .status-color.down {
+  background-color: #B8192B;
+}
+body .devices-block .devices-repeat .uptime {
+  text-align: right;
+}
+body .k2-noc-screen-footer {
+  background: rgba(16, 20, 23, 0.5);
+  display: table;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+}
+body .k2-noc-screen-footer .title {
+  display: table-cell;
+  vertical-align: middle;
+}
+body .k2-noc-screen-footer .title h1 {
+  font-size: 50px;
+  font-family: "RobotoLight";
+  color: #cccccc;
+  margin: 0;
+}
+body .k2-noc-screen-footer .logo {
+  display: table-cell;
+  vertical-align: middle;
+}
