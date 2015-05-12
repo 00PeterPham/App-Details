@@ -1,6 +1,7 @@
 <html ng-app="uptimeApp">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="refresh" content="300">
     <title>Uptime</title>
     <link rel="stylesheet" type="text/css" href="css/uptime.css">
     <script src="js/angular.min.js"></script>
@@ -17,7 +18,7 @@
       <div ng-repeat = 'device in devices' class='devices-repeat'>
         <div class="name">{{device.ShortName}}</div>   
         <div class="request">
-          <div class="request-width">
+          <div class="request-width trans">
             <div class="dns"><span ng-model="devices">{{device.DNStime}}</span></div> 
             <div class="ssl"><span>{{device.SSLtime}}</span></div>  
             <div class="connect"><span>{{device.Ctime}}</span></div> 

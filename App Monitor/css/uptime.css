@@ -101,6 +101,8 @@ body .devices-block .devices-repeat .request .ttlb {
 }
 body .devices-block .devices-repeat .request .request-width {
   width: 1%;
+}
+body .devices-block .devices-repeat .request .request-width.trans {
   -webkit-transition: width 2s ease-in-out;
   -moz-transition: width 2s ease-in-out;
   -o-transition: width 2s ease-in-out;

@@ -1,3 +1,8 @@
+//Refreshes page after x milliseconds
+setInterval(function() {
+  window.location.reload();
+}, 45000);
+
 var uptimeApp = angular.module('uptimeApp',[]);
 
 uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){	
@@ -10,12 +15,23 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 		var z = 0; //increments once per response time call
 		var arrayLength = 0;
 		var largestRtime = 0;
+		var flag = 0;	
+		var e = 0;
+		var uniqueRandoms = [];
+		var numRandoms = scope.devices.length;
+		// var cycleCount = 0;	
+
+		//Fills Random number array
+		for (var i = 0; i < numRandoms; i++) {
+            uniqueRandoms.push(i);
+        }
 
 		//Gets Devices IDs and Stores in array
 		angular.forEach(scope.devices, function(obj,i) {												
 			// console.log(obj.device_id);				
 			// scope.devices[i] = obj.device_id;
-			DevID[i] = obj.device_id;				
+			DevID[i] = obj.device_id;
+
 			// Uptime = getDeviceUptime(scope.devices[i]);
 			// Details = getDeviceDetails(scope.devices[i]);			
 
@@ -108,18 +124,20 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 				// console.log(scope.devices[i].DNStime);			
 
 				//Checks all CheckResults and sets status if all servers are down
-				var stat = " ";
+				var stat = " ";				
 
 				angular.forEach(data, function(obj,i) {					
 					chkRslt[i] = data[i].CheckResult;				
 					// console.log('i ' +  i);			
 					// console.log(chkRslt[z]);
-					if (chkRslt[i] == "404 Not Found (Error)"){
+					if ((chkRslt[i] == "404 Not Found (Error)") && (flag != 1)){
 						stat = " down";				 	
 					 }else {				  	
 					  	stat = " up";
+					  	flag = 1;
 					 }					 
 				});
+				// console.log("stat " + stat);
 				statusColorArray[j].className = statusColorArray[j].className + stat;
 
 				//Setting largest Response time as 100% bar
@@ -165,15 +183,57 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 				 sslArray[j].style.width = SSLbar.toFixed(0) + 'px';
 				 connectArray[j].style.width = Cbar.toFixed(0) + 'px';
 				 ttfbArray[j].style.width = FBbar.toFixed(0) + 'px';
-				 ttlbArray[j].style.width = LBbar.toFixed(0) + 'px';
-
+				 ttlbArray[j].style.width = LBbar.toFixed(0) + 'px';						 
+			
 				j++;
-				z++;
+				z++;				
 			});				
 			
-		});
+		});		
+		ResponseCycle();
 
+		function ResponseCycle() {
+			// var rando = Math.floor((Math.random() * numberArray.length) + 1);
+			// var cycleCount = makeUniqueRandom();
+			// var cycleCount = e;
+			// console.log("CYCLE COUNT " + cycleCount);
 
+			setInterval(function(){
+				var cycleCount = makeUniqueRandom();
+				var requestWidthArray = document.getElementsByClassName("request-width");
+				requestWidthArray[cycleCount].style.width = 0 + '%';	
+				requestWidthArray[cycleCount].className = "request-width";
+
+				setTimeout(function(){ 							
+						requestWidthArray[cycleCount].className = "request-width trans";			 
+			 			requestWidthArray[cycleCount].style.width = 100 + '%';							
+			 			console.log("EVENT FIRED");
+			 			console.log("CYCLE COUNT " + cycleCount);
+
+				}, 100);
+			}, 10000);				 	
+		}
+
+		function makeUniqueRandom() {
+		    // refill the array if needed
+		    if (!uniqueRandoms.length) {
+		        for (var i = 0; i < numRandoms; i++) {
+		            uniqueRandoms.push(i);
+		        }
+		    }
+		    var index = Math.floor(Math.random() * uniqueRandoms.length);
+		    var val = uniqueRandoms[index];
+
+		    // now remove that value from the array
+		    uniqueRandoms.splice(index, 1);
+
+		    return val;
+
+		}		
+
+		Element.prototype.hasClass = function(className) {
+		    return this.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.className);
+		};
 	
 		function getDeviceUptime(device) {
 			// console.log('HI PETER');
