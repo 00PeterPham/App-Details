@@ -18,19 +18,27 @@
         <div class="name">{{device.ShortName}}</div>   
         <div class="request">
           <div class="request-width">
-            <div class="dns">{{device.DNStime}} </div> 
-            <div class="ssl">{{device.SSLtime}} </div>  
-            <div class="connect">{{device.Ctime}}</div> 
-            <div class="ttfb">{{device.FBtime}}</div> 
-            <div class="ttlb">{{device.LBtime}} </div>
+            <div class="dns"><span ng-model="devices">{{device.DNStime}}</span></div> 
+            <div class="ssl"><span>{{device.SSLtime}}</span></div>  
+            <div class="connect"><span>{{device.Ctime}}</span></div> 
+            <div class="ttfb"><span>{{device.FBtime}}</span></div> 
+            <div class="ttlb"><span>{{device.LBtime}}</span></div>
           </div>
         </div>             
         <div class="status">
           <div class="status-color"></div>
           {{device.status}}
         </div>         
-        <div class="uptime">{{device.uptimes}}%</div>               
-      </div>
+        <div class="uptime">{{device.uptimes}}%</div>                             
+      </div>    
+
+     <!--  <div ng-bind="devices"></div>   -->
+      <div>{{devices[0].DNStime}}</div> 
+      <div>{{devices[0].SSLtime}}</div> 
+      <div>{{devices[0].Ctime}}</div>
+      <div>{{devices[0].FBtime}}</div>
+      <div>{{devices[0].LBtime}}</div>
+
     </div>
      <div class = 'k2-noc-screen-footer'>     
         <div class = 'title'>

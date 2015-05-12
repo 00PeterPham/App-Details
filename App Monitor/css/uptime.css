@@ -65,10 +65,14 @@ body .devices-block .devices-repeat .name {
 }
 body .devices-block .devices-repeat .request {
   display: table-cell;
+  /*visibility: hidden;*/
   vertical-align: middle;
   /*padding: 0 5% 1px 5px;*/
   padding: 0 0 1px 5px;
   width: 55%;
+}
+body .devices-block .devices-repeat .request span {
+  display: none;
 }
 body .devices-block .devices-repeat .request .dns,
 body .devices-block .devices-repeat .request .ssl,
@@ -78,7 +82,7 @@ body .devices-block .devices-repeat .request .ttlb {
   /*text-shadow: 0 0 2px rgba(255, 255, 255, 1.5);*/
   display: table-cell;
   height: 20px;
-  color: transparent;
+  /*color: transparent;*/
 }
 body .devices-block .devices-repeat .request .dns {
   background-color: #51599E;

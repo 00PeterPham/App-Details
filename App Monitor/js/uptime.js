@@ -6,15 +6,16 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 		scope.devices = data;	
 		
 		var DevID = [];	
-		j = 0;
+		var j = 0;
+		var z = 0; //increments once per response time call
+		var arrayLength = 0;
 		var largestRtime = 0;
 
 		//Gets Devices IDs and Stores in array
 		angular.forEach(scope.devices, function(obj,i) {												
 			// console.log(obj.device_id);				
 			// scope.devices[i] = obj.device_id;
-			DevID[i] = obj.device_id;			
-
+			DevID[i] = obj.device_id;				
 			// Uptime = getDeviceUptime(scope.devices[i]);
 			// Details = getDeviceDetails(scope.devices[i]);			
 
@@ -29,36 +30,97 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 				scope.devices[i].uptimes = Uptime_t.toFixed(3);	
 		
 				// console.log(data.Uptime.UpSeconds);
-			});		
-
-			var z = j;			
+			});							
 
 			getDeviceDetails(DevID[i]).then(function(data) {
-				// console.log(data[z]);
+				console.log(data);
+				// console.log(z);				
+				console.log("data length " + data.length);
 
-				var chkRslt = data[z].CheckResult;
+				var DNStime = [];
+				var SSLtime = [];
+				var Ctime = [];
+				var FBtime = [];
+				var LBtime = [];
+				var chkRslt = [];
+
+				var sumDNS = 0;
+				var sumDNS = 0;	
+				var sumSSL = 0;
+				var	sumCON = 0;
+				var	sumFB = 0;
+				var	sumLB = 0;	
+
+				//Calculates average of response times
+				angular.forEach(data, function(obj,i) {
+					// arrayLength++;
+					// console.log("array length " + arrayLength);
+					// console.log(i); increments 0 - 12
+					// console.log('i ' +  i);
+
+					DNStime[i] = data[i].DNSTime;
+					SSLtime[i] = data[i].SSLTime;
+					Ctime[i] = data[i].ConnectTime;
+					FBtime[i] = data[i].TTFB;
+					LBtime[i] = data[i].TTLB;
+
+					// console.log(SSLtime[i]);
+
+					sumDNS += parseInt( DNStime[i], 10 );	
+					sumSSL += parseInt( SSLtime[i], 10 );
+					sumCON += parseInt( Ctime[i], 10 );
+					sumFB += parseInt( FBtime[i], 10 );
+					sumLB += parseInt( LBtime[i], 10 );				
+				});
+				// console.log("SUM " + sumSSL);
+				// console.log("arrayLength " + arrayLength);
+
+				var avgDNS = sumDNS/data.length;
+				var avgSSL = sumSSL/data.length;
+				var avgCON = sumCON/data.length;
+				var avgFB = sumFB/data.length;
+				var avgLB = sumLB/data.length;
+
+				console.log("AVG " + avgLB);	
+				
 				var statusColorArray = document.getElementsByClassName("status-color");	
 
 				var Rtime = data[z].RequestTime;
 
-				var DNStime = data[z].DNSTime;
-				var SSLtime = data[z].SSLTime;
-				var Ctime = data[z].ConnectTime;
-				var FBtime = data[z].TTFB;
-				var LBtime = data[z].TTLB;			
+				// var DNStime = data[z].DNSTime;
+				// var SSLtime = data[z].SSLTime;
+				// var Ctime = data[z].ConnectTime;
+				// var FBtime = data[z].TTFB;
+				// var LBtime = data[z].TTLB;	
 
-				scope.devices[i].DNStime = DNStime.toFixed(2);	
-				scope.devices[i].SSLtime = SSLtime.toFixed(2);
-				scope.devices[i].Ctime = Ctime.toFixed(2);
-				scope.devices[i].FBtime = FBtime.toFixed(2);
-				scope.devices[i].LBtime = LBtime.toFixed(2);
+				// scope.devices[i].DNStime = DNStime[i].toFixed(2);					
+				// scope.devices[i].SSLtime = SSLtime.toFixed(2);
+				// scope.devices[i].Ctime = Ctime.toFixed(2);
+				// scope.devices[i].FBtime = FBtime.toFixed(2);
+				// scope.devices[i].LBtime = LBtime.toFixed(2);	
 
-				// console.log(chkRslt);
-				if (chkRslt == '200 OK'){
-				 	statusColorArray[j].className = statusColorArray[j].className + " up";
-				 }else {
-				  	statusColorArray[j].className = statusColorArray[j].className + " down";
-				 }
+				scope.devices[i].DNStime = avgDNS.toFixed(2);
+				scope.devices[i].SSLtime = avgSSL.toFixed(2);
+				scope.devices[i].Ctime = avgCON.toFixed(2);
+				scope.devices[i].FBtime = avgFB.toFixed(2);
+				scope.devices[i].LBtime = avgLB.toFixed(2);
+
+				// console.log(scope.devices[i].DNStime);			
+
+				//Checks all CheckResults and sets status if all servers are down
+				var stat = " ";
+
+				angular.forEach(data, function(obj,i) {					
+					chkRslt[i] = data[i].CheckResult;				
+					// console.log('i ' +  i);			
+					// console.log(chkRslt[z]);
+					if (chkRslt[i] == "404 Not Found (Error)"){
+						stat = " down";				 	
+					 }else {				  	
+					  	stat = " up";
+					 }					 
+				});
+				statusColorArray[j].className = statusColorArray[j].className + stat;
 
 				//Setting largest Response time as 100% bar
 				 // console.log(Rtime);		
@@ -71,11 +133,11 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 				 } else {
 				 	largestRtime = largestRtime;
 				 }
-				 console.log(largestRtime);
+				 // console.log(largestRtime);
 
 				 var RtimeWidth = requestArray[0].offsetWidth;
 				 var pxPerMs = 	RtimeWidth/largestRtime;	 
-				 console.log(pxPerMs);
+				 // console.log(pxPerMs);
 
 				//Applying Width to Reponse Times		
 				var requestWidthArray = document.getElementsByClassName("request-width");
@@ -87,11 +149,17 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 				var ttfbArray = document.getElementsByClassName("ttfb");
 				var ttlbArray = document.getElementsByClassName("ttlb");
 
-				var DNSbar = DNStime * pxPerMs;
-				var SSLbar = SSLtime * pxPerMs;
-				var Cbar = Ctime * pxPerMs;
-				var FBbar = FBtime * pxPerMs;
-				var LBbar = LBtime * pxPerMs;
+				// var DNSbar = DNStime * pxPerMs;
+				// var SSLbar = SSLtime * pxPerMs;
+				// var Cbar = Ctime * pxPerMs;
+				// var FBbar = FBtime * pxPerMs;
+				// var LBbar = LBtime * pxPerMs;
+
+				var DNSbar = avgDNS * pxPerMs;
+				var SSLbar = avgSSL * pxPerMs;
+				var Cbar = avgCON * pxPerMs;
+				var FBbar = avgFB * pxPerMs;
+				var LBbar = avgLB * pxPerMs;
 
 				 dnsArray[j].style.width = DNSbar.toFixed(0) + 'px';
 				 sslArray[j].style.width = SSLbar.toFixed(0) + 'px';
@@ -100,6 +168,7 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 				 ttlbArray[j].style.width = LBbar.toFixed(0) + 'px';
 
 				j++;
+				z++;
 			});				
 			
 		});
