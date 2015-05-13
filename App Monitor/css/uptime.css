@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "RobotoRegular";
+  src: url("../font/roboto/Roboto-Regular.eot?#iefix");
+  src: url("../font/roboto/Roboto-Regular.eot?#iefix") format("eot"), url("../font/roboto/Roboto-Regular.woff") format("woff"), url("../font/roboto/Roboto-Regular.ttf") format("truetype"), url("../font/roboto/Roboto-Regular.svg#Roboto-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
 body {
   margin: 0;
   background: #333333;
@@ -7,7 +14,7 @@ body .devices-block {
   width: 100%;
 }
 body .devices-block .title-bar {
-  /*font-family: @font_regular;*/
+  font-family: "RobotoRegular";
   font-size: 20px;
   line-height: 20px;
   color: #fff;
@@ -15,7 +22,7 @@ body .devices-block .title-bar {
   white-space: nowrap;
   text-transform: uppercase;
   margin-bottom: 5px;
-  /*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
+  /*background: #000 url(../img/text-mask.png) repeat 0 0;*/
   text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
   -webkit-text-fill-color: #ccc;
   -moz-text-fill-color: #ccc;
@@ -36,6 +43,8 @@ body .devices-block .title-bar .title-response span {
 }
 body .devices-block .title-bar .title-status {
   display: table-cell;
+  width: 22%;
+  text-align: center;
 }
 body .devices-block .title-bar .title-uptime {
   text-align: right;
@@ -46,6 +55,7 @@ body .devices-block .devices-repeat:nth-child(odd) {
 body .devices-block .devices-repeat {
   display: table;
   width: 100%;
+  font-family: "RobotoRegular";
   line-height: 20px;
   color: #fff;
   font-weight: normal;
@@ -53,15 +63,24 @@ body .devices-block .devices-repeat {
   text-transform: uppercase;
   margin-bottom: 5px;
   /*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
-  /*text-shadow: 0 0 2px rgba(255,255,255,0.5);*/
-  /*	-webkit-text-fill-color: #ccc;
-			-moz-text-fill-color: #ccc;
-			text-fill-color: #ccc;*/
+  /*background: #000 url(../img/text-mask.png) repeat 0 0;
+			-webkit-text-fill-color: transparent;*/
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+  -webkit-text-fill-color: #ccc;
+  -moz-text-fill-color: #ccc;
+  text-fill-color: #ccc;
 }
 body .devices-block .devices-repeat .name {
   display: table-cell;
   width: 15%;
   padding: 4px 0 0 5px;
+}
+body .devices-block .devices-repeat .name.selected {
+  /*text-shadow: 0 0 2px rgba(98, 171, 178, 0.7);*/
+  /*text-shadow: 0 0 2px rgba(0, 0, 0, 1.5);*/
+  -webkit-text-fill-color: #3AB54A;
+  -moz-text-fill-color: #3AB54A;
+  text-fill-color: #3AB54A;
 }
 body .devices-block .devices-repeat .request {
   display: table-cell;
@@ -86,6 +105,8 @@ body .devices-block .devices-repeat .request .ttlb {
 }
 body .devices-block .devices-repeat .request .dns {
   background-color: #51599E;
+  /*border-top-left-radius: 5px;
+					border-bottom-left-radius: 5px;*/
 }
 body .devices-block .devices-repeat .request .ssl {
   background-color: #5295A0;
@@ -98,6 +119,9 @@ body .devices-block .devices-repeat .request .ttfb {
 }
 body .devices-block .devices-repeat .request .ttlb {
   background-color: #DE340C;
+  /*border-top-right-radius: 5px;
+					border-bottom-right-radius: 5px;
+					min-width: 3px;	*/
 }
 body .devices-block .devices-repeat .request .request-width {
   width: 1%;
@@ -111,13 +135,16 @@ body .devices-block .devices-repeat .request .request-width.trans {
 body .devices-block .devices-repeat .status {
   display: table-cell;
   vertical-align: middle;
-  padding: 0 0 1px 20px;
-  width: 15%;
+  padding: 0 0 1px 0;
+  width: 22%;
+  text-align: center;
 }
 body .devices-block .devices-repeat .status .status-color {
   background-color: #666;
   width: 25px;
   height: 25px;
+  border-radius: 5px;
+  margin: 0 auto;
 }
 body .devices-block .devices-repeat .status .status-color.up {
   background-color: #3AB54A;
@@ -127,6 +154,96 @@ body .devices-block .devices-repeat .status .status-color.down {
 }
 body .devices-block .devices-repeat .uptime {
   text-align: right;
+}
+body .devices-block .devices-repeat .uptime.selected {
+  /*text-shadow: 0 0 2px rgba(98, 171, 178, 0.7);*/
+  /*text-shadow: 0 0 2px rgba(0, 0, 0, 1.5);*/
+  -webkit-text-fill-color: #3AB54A;
+  -moz-text-fill-color: #3AB54A;
+  text-fill-color: #3AB54A;
+}
+body .devices-block .legend {
+  font-family: "RobotoRegular";
+  font-size: 20px;
+  line-height: 20px;
+  color: #fff;
+  font-weight: normal;
+  white-space: nowrap;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  /*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+  -webkit-text-fill-color: #ccc;
+  -moz-text-fill-color: #ccc;
+  text-fill-color: #ccc;
+  margin-left: 15%;
+  padding: 0 0 1px 5px;
+}
+body .devices-block .legend .lgnd_dns,
+body .devices-block .legend .lgnd_ssl,
+body .devices-block .legend .lgnd_conn,
+body .devices-block .legend .lgnd_fb,
+body .devices-block .legend .lgnd_lb {
+  display: table-cell;
+  padding-right: 50px;
+}
+body .devices-block .legend .lgnd_dns .lgnd_color {
+  width: 20px;
+  height: 20px;
+  background-color: #51599E;
+  display: inline-block;
+}
+body .devices-block .legend .lgnd_ssl .lgnd_color {
+  width: 20px;
+  height: 20px;
+  background-color: #5295A0;
+  display: inline-block;
+}
+body .devices-block .legend .lgnd_conn .lgnd_color {
+  width: 20px;
+  height: 20px;
+  background-color: #6E9C0E;
+  display: inline-block;
+}
+body .devices-block .legend .lgnd_fb .lgnd_color {
+  width: 20px;
+  height: 20px;
+  background-color: #FFA60B;
+  display: inline-block;
+}
+body .devices-block .legend .lgnd_lb .lgnd_color {
+  width: 20px;
+  height: 20px;
+  background-color: #DE340C;
+  display: inline-block;
+}
+body .devices-block .time_display {
+  font-family: "RobotoRegular";
+  font-size: 20px;
+  line-height: 20px;
+  color: #fff;
+  font-weight: normal;
+  white-space: nowrap;
+  /*text-transform: uppercase;*/
+  margin-bottom: 5px;
+  /*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+  -webkit-text-fill-color: #ccc;
+  -moz-text-fill-color: #ccc;
+  text-fill-color: #ccc;
+  margin-left: 15%;
+  padding: 0 0 1px 5px;
+}
+body .devices-block .time_display #time_DNStime,
+body .devices-block .time_display #time_SSLtime,
+body .devices-block .time_display #time_Ctime,
+body .devices-block .time_display #time_FBtime,
+body .devices-block .time_display #time_LBtime {
+  display: table-cell;
+  min-width: 120px;
+}
+body .devices-block .time_display #AppName {
+  text-transform: uppercase;
 }
 body .k2-noc-screen-footer {
   background: rgba(16, 20, 23, 0.5);

@@ -1,7 +1,7 @@
 //Refreshes page after x milliseconds
 setInterval(function() {
   window.location.reload();
-}, 45000);
+}, 130000);
 
 var uptimeApp = angular.module('uptimeApp',[]);
 
@@ -9,6 +9,7 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 	//Call to device API
 	http.get('api/devices.php').success(function(data){		
 		scope.devices = data;	
+		console.log (scope.devices);
 		
 		var DevID = [];	
 		var j = 0;
@@ -49,9 +50,9 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 			});							
 
 			getDeviceDetails(DevID[i]).then(function(data) {
-				console.log(data);
+				// console.log(data);
 				// console.log(z);				
-				console.log("data length " + data.length);
+				// console.log("data length " + data.length);
 
 				var DNStime = [];
 				var SSLtime = [];
@@ -97,23 +98,11 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 				var avgFB = sumFB/data.length;
 				var avgLB = sumLB/data.length;
 
-				console.log("AVG " + avgLB);	
+				// console.log("AVG " + avgLB);	
 				
 				var statusColorArray = document.getElementsByClassName("status-color");	
 
-				var Rtime = data[z].RequestTime;
-
-				// var DNStime = data[z].DNSTime;
-				// var SSLtime = data[z].SSLTime;
-				// var Ctime = data[z].ConnectTime;
-				// var FBtime = data[z].TTFB;
-				// var LBtime = data[z].TTLB;	
-
-				// scope.devices[i].DNStime = DNStime[i].toFixed(2);					
-				// scope.devices[i].SSLtime = SSLtime.toFixed(2);
-				// scope.devices[i].Ctime = Ctime.toFixed(2);
-				// scope.devices[i].FBtime = FBtime.toFixed(2);
-				// scope.devices[i].LBtime = LBtime.toFixed(2);	
+				var Rtime = data[z].RequestTime;			
 
 				scope.devices[i].DNStime = avgDNS.toFixed(2);
 				scope.devices[i].SSLtime = avgSSL.toFixed(2);
@@ -190,28 +179,54 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 			});				
 			
 		});		
+
+		//Cycles through Response Bars random and resets animation
 		ResponseCycle();
 
-		function ResponseCycle() {
-			// var rando = Math.floor((Math.random() * numberArray.length) + 1);
-			// var cycleCount = makeUniqueRandom();
-			// var cycleCount = e;
-			// console.log("CYCLE COUNT " + cycleCount);
+		function ResponseCycle() {					
 
 			setInterval(function(){
 				var cycleCount = makeUniqueRandom();
 				var requestWidthArray = document.getElementsByClassName("request-width");
+				var nameArray = document.getElementsByClassName("name");
+				var uptimeArray = document.getElementsByClassName("uptime");
+
 				requestWidthArray[cycleCount].style.width = 0 + '%';	
 				requestWidthArray[cycleCount].className = "request-width";
 
-				setTimeout(function(){ 							
+				setTimeout(function(){ 		
+						var nameClass = nameArray[cycleCount].className;
+						var uptimeClass = uptimeArray[cycleCount].className;
+
+						for (var i = 0; i < 13; i++) {
+							console.log("i " + i);
+							nameArray[i].classList.remove("selected");
+							uptimeArray[i].classList.remove("selected");
+						};
+
 						requestWidthArray[cycleCount].className = "request-width trans";			 
 			 			requestWidthArray[cycleCount].style.width = 100 + '%';							
-			 			console.log("EVENT FIRED");
-			 			console.log("CYCLE COUNT " + cycleCount);
+			 			// console.log("EVENT FIRED");
+			 			// console.log("CYCLE COUNT " + cycleCount);
+
+			 			console.log(scope.devices[cycleCount].DNStime);
+			 			scope.respTimes = scope.devices[cycleCount].DNStime;
+			 			
+			 			//need to remove selected class from others
+			 			nameArray[cycleCount].className = nameClass + ' selected';
+			 			uptimeArray[cycleCount].className = uptimeClass + ' selected';
+			 			
+			 			document.getElementById("time_DNStime").innerHTML = scope.devices[cycleCount].DNStime + ' ms';		 		
+			 			document.getElementById("time_SSLtime").innerHTML = scope.devices[cycleCount].SSLtime + ' ms';
+			 			document.getElementById("time_Ctime").innerHTML = scope.devices[cycleCount].Ctime + ' ms';
+			 			document.getElementById("time_FBtime").innerHTML = scope.devices[cycleCount].FBtime + ' ms';
+			 			document.getElementById("time_LBtime").innerHTML = scope.devices[cycleCount].LBtime + ' ms';
+			 			document.getElementById("AppName").innerHTML = scope.devices[cycleCount].ShortName;
+			 			// scope.devices[0].DNStime = 'TEST';
+			 			// console.log(scope.devices);
 
 				}, 100);
-			}, 10000);				 	
+			}, 7500);				 	
 		}
 
 		function makeUniqueRandom() {
@@ -229,12 +244,9 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 
 		    return val;
 
-		}		
-
-		Element.prototype.hasClass = function(className) {
-		    return this.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.className);
-		};
+		}
 	
+		//Function to get Device Uptime
 		function getDeviceUptime(device) {
 			// console.log('HI PETER');
 			var request = http({
@@ -248,7 +260,8 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 			return request.then(handleSuccess, handleError);
 			
 		}	
-	
+		
+		//Function to get Device Details
 		function getDeviceDetails(deviceid) {
 			// console.log('HI PETER');
 			var request = http({

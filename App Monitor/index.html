@@ -33,12 +33,37 @@
         <div class="uptime">{{device.uptimes}}%</div>                             
       </div>    
 
-     <!--  <div ng-bind="devices"></div>   -->
-      <div>{{devices[0].DNStime}}</div> 
-      <div>{{devices[0].SSLtime}}</div> 
-      <div>{{devices[0].Ctime}}</div>
-      <div>{{devices[0].FBtime}}</div>
-      <div>{{devices[0].LBtime}}</div>
+      <div class="legend">
+        <div class="lgnd_dns">
+          <div class="lgnd_color"></div>
+          DNS
+        </div>
+        <div class="lgnd_ssl">
+          <div class="lgnd_color"></div>
+          SSL
+        </div>
+        <div class="lgnd_conn">
+          <div class="lgnd_color"></div>
+          CONNECT
+        </div>
+        <div class="lgnd_fb">
+          <div class="lgnd_color"></div>
+          FIRST BYTE
+        </div>
+        <div class="lgnd_lb">
+          <div class="lgnd_color"></div>
+          LAST BYTE
+        </div>
+      </div>
+
+      <div class="time_display">
+        <div id = "time_DNStime">{{devices[0].DNStime}} ms</div> 
+        <div id = "time_SSLtime">{{devices[0].SSLtime}} ms</div> 
+        <div id = "time_Ctime">{{devices[0].Ctime}} ms</div>
+        <div id = "time_FBtime">{{devices[0].FBtime}} ms</div>
+        <div id = "time_LBtime">{{devices[0].LBtime}} ms</div>
+        <div id = "AppName">{{devices[0].ShortName}}</div>
+      </div>
 
     </div>
      <div class = 'k2-noc-screen-footer'>     
