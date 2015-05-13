@@ -2,6 +2,7 @@
 setInterval(function() {
   window.location.reload();
 }, 130000);
+// }, 9999999999);
 
 var uptimeApp = angular.module('uptimeApp',[]);
 
@@ -140,10 +141,14 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 				 } else {
 				 	largestRtime = largestRtime;
 				 }
+
+				 largestRtime = 1500;
 				 // console.log(largestRtime);
 
 				 var RtimeWidth = requestArray[0].offsetWidth;
-				 var pxPerMs = 	RtimeWidth/largestRtime;	 
+				 var pxPerMs = 	RtimeWidth/largestRtime;	
+				 console.log("RtimeWidth " + RtimeWidth);
+				 console.log("largestRtime " + largestRtime); 
 				 // console.log(pxPerMs);
 
 				//Applying Width to Reponse Times		
@@ -163,12 +168,15 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 				// var LBbar = LBtime * pxPerMs;
 
 				var DNSbar = avgDNS * pxPerMs;
+				// console.log("avgDNS " + avgDNS);
+				// console.log("pxPerMs " + pxPerMs);
 				var SSLbar = avgSSL * pxPerMs;
 				var Cbar = avgCON * pxPerMs;
 				var FBbar = avgFB * pxPerMs;
 				var LBbar = avgLB * pxPerMs;
 
 				 dnsArray[j].style.width = DNSbar.toFixed(0) + 'px';
+				 console.log("DNSbar " + DNSbar.toFixed(0));
 				 sslArray[j].style.width = SSLbar.toFixed(0) + 'px';
 				 connectArray[j].style.width = Cbar.toFixed(0) + 'px';
 				 ttfbArray[j].style.width = FBbar.toFixed(0) + 'px';
