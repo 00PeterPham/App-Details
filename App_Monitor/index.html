@@ -1,7 +1,6 @@
 <html ng-app="uptimeApp">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="refresh" content="300">
+    <meta charset="utf-8">    
     <title>Uptime</title>
     <link rel="stylesheet" type="text/css" href="css/uptime.css">
     <script src="js/angular.min.js"></script>
@@ -54,15 +53,15 @@
           <div class="lgnd_color"></div>
           LAST BYTE
         </div>
-      </div>
+      </div>      
 
-      <div class="time_display">
+      <div class="time_display">     
+        <div id = "AppName">{{devices[0].ShortName}}</div>  
         <div id = "time_DNStime">{{devices[0].DNStime}} ms</div> 
         <div id = "time_SSLtime">{{devices[0].SSLtime}} ms</div> 
         <div id = "time_Ctime">{{devices[0].Ctime}} ms</div>
         <div id = "time_FBtime">{{devices[0].FBtime}} ms</div>
-        <div id = "time_LBtime">{{devices[0].LBtime}} ms</div>
-        <div id = "AppName">{{devices[0].ShortName}}</div>
+        <div id = "time_LBtime">{{devices[0].LBtime}} ms</div>        
       </div>
 
     </div>

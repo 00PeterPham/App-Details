@@ -30,13 +30,13 @@ body {
 	.devices-block{
 		display: table;
 		width: 100%;
-		font-size: 20px;
+		font-size: 30px;
 		padding: 1%;
 		box-sizing: border-box;
 
 		.title-bar{
 			font-family: @font_regular;
-			font-size: 20px;
+			font-size: 30px;
 			line-height: 20px;
 			//color: #333;
 			color: #fff;
@@ -50,9 +50,9 @@ body {
 				
 			text-shadow: 0 0 2px rgba(255,255,255,0.5);
 
-			-webkit-text-fill-color: #ccc;
-			-moz-text-fill-color: #ccc;
-			text-fill-color: #ccc;
+			-webkit-text-fill-color: #888;
+			-moz-text-fill-color: #888;
+			text-fill-color: #888;
 
 			display: table;
 			width: 100%;
@@ -63,7 +63,7 @@ body {
 			}
 			.title-response {
 				display: table-cell;
-				width: 55%;
+				width: 70%;
 
 				span{
 					text-transform: lowercase;
@@ -72,12 +72,13 @@ body {
 			.title-status {
 				display: table-cell;  	
 				width: 26%;
-				text-align: center;  							
+				text-align: right;
+  				padding-right: 60px; 							
 			}
 			.title-uptime{
 				text-align: right;
 				padding-right: 5px;
-				min-width: 88px;
+				min-width: 135px;
 			}
 		}
 		.devices-repeat:nth-child(odd) {
@@ -88,6 +89,7 @@ body {
 			width: 100%;
 
 			font-family: @font_regular;
+			font-size: 25px;
 			line-height: 20px;		
 			color: #fff;
 			font-weight: normal;
@@ -95,6 +97,7 @@ body {
 			text-transform: uppercase;
 			//text-indent: -1px;
 			margin-bottom: 5px;
+			padding: 10px 0;
 			
 			/*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
 			/*background: #000 url(../img/text-mask.png) repeat 0 0;
@@ -109,7 +112,7 @@ body {
 			.name {
 				display: table-cell;
 				width: 15%;
-				padding: 4px 0 0 5px;
+				padding: 0 0 0 5px;
 
 				&.selected {
 					/*text-shadow: 0 0 2px rgba(98, 171, 178, 0.7);*/
@@ -129,7 +132,7 @@ body {
 				vertical-align: middle;
 				/*padding: 0 5% 1px 5px;*/
 				padding: 0 0 1px 5px;
-				width: 55%;											
+				width: 70%;											
 
 				.dns, .ssl, .connect, .ttfb, .ttlb {
 					/*text-shadow: 0 0 2px rgba(255, 255, 255, 1.5);*/
@@ -155,8 +158,8 @@ body {
 				.ttlb{
 					background-color: #DE340C;	
 					/*border-top-right-radius: 5px;
-					border-bottom-right-radius: 5px;
-					min-width: 3px;	*/				
+					border-bottom-right-radius: 5px;*/
+					min-width: 3px;					
 				}
 
 				.request-width {
@@ -182,7 +185,9 @@ body {
 					width: 25px;
   					height: 25px;
   					border-radius: 5px;
-  					margin: 0 auto;
+  					/*margin: 0 auto;*/
+  					float: right;
+  					margin-right: 105px;
 
 					&.up {
 						background-color: #3AB54A;							
@@ -196,7 +201,7 @@ body {
 			.uptime{				
 				text-align: right;
 				padding-right: 5px;	
-				min-width: 88px;	
+				min-width: 135px;	
 
 				&.selected {
 					/*text-shadow: 0 0 2px rgba(98, 171, 178, 0.7);*/
@@ -209,13 +214,13 @@ body {
 		}
 		.legend {
 			font-family: @font_regular;
-			font-size: 20px;
+			font-size: 30px;
 			line-height: 20px;			
 			color: #fff;
 			font-weight: normal;
 			white-space: nowrap;
 			text-transform: uppercase;			
-			margin-bottom: 5px;
+			margin-bottom: 30px;
 			margin-top: 2%;
 			
 			/*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
@@ -231,7 +236,7 @@ body {
 
 			.lgnd_dns, .lgnd_ssl, .lgnd_conn, .lgnd_fb, .lgnd_lb {
 				display: table-cell;
-				padding-right: 60px;
+				padding-right: 100px;
 			}
 			.lgnd_dns {
 				.lgnd_color {
@@ -276,7 +281,7 @@ body {
 		}
 		.time_display {
 			font-family: @font_regular;
-			font-size: 20px;
+			font-size: 30px;
 			line-height: 20px;
 			//color: #333;
 			color: #fff;
@@ -285,6 +290,8 @@ body {
 			/*text-transform: uppercase;*/
 			//text-indent: -1px;
 			margin-bottom: 5px;
+			margin-top: 15px;
+
 			
 			/*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
 				
@@ -294,22 +301,33 @@ body {
 			-moz-text-fill-color: #ccc;
 			text-fill-color: #ccc;
 
-			margin-left: 15%;
+			margin-left: 0;
 			padding: 0 0 1px 5px;
 
-			#time_DNStime, #time_SSLtime, #time_Ctime, #time_FBtime, #time_LBtime {
-				display: table-cell;
-				min-width: 125px;
-			}
-			#time_Ctime {
-				min-width: 175px;
-			}
-			#time_FBtime {
-				min-width: 190px;
-			}
 			#AppName {
 				text-transform: uppercase;
 				margin-top: 1%;
+				display: table-cell;
+				padding-right: 30px;
+				min-width: 180px;
+				background: #3c3c3c;
+				padding: 2% 1%;
+				text-align: center;
+			}
+
+			#time_DNStime, #time_SSLtime, #time_Ctime, #time_FBtime, #time_LBtime {
+				display: table-cell;
+				min-width: 185px;
+			}
+			#time_DNStime {
+				padding-left: 40px;
+				min-width: 190px;
+			}
+			#time_Ctime {
+				min-width: 265px;
+			}
+			#time_FBtime {
+				min-width: 290px;
 			}
 		}
 	}
@@ -336,11 +354,12 @@ body {
 		.logo {
 			display: table-cell;
 			vertical-align: middle;
-			text-align: right;
-  			padding-right: 1%;
+			text-align: right;  			
 
 			img {
-				 width: 100%;
+				width: 150px;
+				padding: 7px 15px 0 0;
+  				box-sizing: border-box;
 			}
 		}
 	}

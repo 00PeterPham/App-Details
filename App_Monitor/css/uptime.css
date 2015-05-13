@@ -19,13 +19,13 @@ body {
 body .devices-block {
   display: table;
   width: 100%;
-  font-size: 20px;
+  font-size: 30px;
   padding: 1%;
   box-sizing: border-box;
 }
 body .devices-block .title-bar {
   font-family: "RobotoRegular";
-  font-size: 20px;
+  font-size: 30px;
   line-height: 20px;
   color: #fff;
   font-weight: normal;
@@ -34,9 +34,9 @@ body .devices-block .title-bar {
   margin-bottom: 15px;
   /*background: #000 url(../img/text-mask.png) repeat 0 0;*/
   text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-  -webkit-text-fill-color: #ccc;
-  -moz-text-fill-color: #ccc;
-  text-fill-color: #ccc;
+  -webkit-text-fill-color: #888;
+  -moz-text-fill-color: #888;
+  text-fill-color: #888;
   display: table;
   width: 100%;
 }
@@ -46,7 +46,7 @@ body .devices-block .title-bar .title-app {
 }
 body .devices-block .title-bar .title-response {
   display: table-cell;
-  width: 55%;
+  width: 70%;
 }
 body .devices-block .title-bar .title-response span {
   text-transform: lowercase;
@@ -54,12 +54,13 @@ body .devices-block .title-bar .title-response span {
 body .devices-block .title-bar .title-status {
   display: table-cell;
   width: 26%;
-  text-align: center;
+  text-align: right;
+  padding-right: 60px;
 }
 body .devices-block .title-bar .title-uptime {
   text-align: right;
   padding-right: 5px;
-  min-width: 88px;
+  min-width: 135px;
 }
 body .devices-block .devices-repeat:nth-child(odd) {
   background-color: #3C3C3C;
@@ -68,12 +69,14 @@ body .devices-block .devices-repeat {
   display: table;
   width: 100%;
   font-family: "RobotoRegular";
+  font-size: 25px;
   line-height: 20px;
   color: #fff;
   font-weight: normal;
   white-space: nowrap;
   text-transform: uppercase;
   margin-bottom: 5px;
+  padding: 10px 0;
   /*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
   /*background: #000 url(../img/text-mask.png) repeat 0 0;
 			-webkit-text-fill-color: transparent;*/
@@ -85,7 +88,7 @@ body .devices-block .devices-repeat {
 body .devices-block .devices-repeat .name {
   display: table-cell;
   width: 15%;
-  padding: 4px 0 0 5px;
+  padding: 0 0 0 5px;
 }
 body .devices-block .devices-repeat .name.selected {
   /*text-shadow: 0 0 2px rgba(98, 171, 178, 0.7);*/
@@ -100,7 +103,7 @@ body .devices-block .devices-repeat .request {
   vertical-align: middle;
   /*padding: 0 5% 1px 5px;*/
   padding: 0 0 1px 5px;
-  width: 55%;
+  width: 70%;
 }
 body .devices-block .devices-repeat .request span {
   display: none;
@@ -132,8 +135,8 @@ body .devices-block .devices-repeat .request .ttfb {
 body .devices-block .devices-repeat .request .ttlb {
   background-color: #DE340C;
   /*border-top-right-radius: 5px;
-					border-bottom-right-radius: 5px;
-					min-width: 3px;	*/
+					border-bottom-right-radius: 5px;*/
+  min-width: 3px;
 }
 body .devices-block .devices-repeat .request .request-width {
   width: 1%;
@@ -156,7 +159,9 @@ body .devices-block .devices-repeat .status .status-color {
   width: 25px;
   height: 25px;
   border-radius: 5px;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
+  float: right;
+  margin-right: 105px;
 }
 body .devices-block .devices-repeat .status .status-color.up {
   background-color: #3AB54A;
@@ -167,7 +172,7 @@ body .devices-block .devices-repeat .status .status-color.down {
 body .devices-block .devices-repeat .uptime {
   text-align: right;
   padding-right: 5px;
-  min-width: 88px;
+  min-width: 135px;
 }
 body .devices-block .devices-repeat .uptime.selected {
   /*text-shadow: 0 0 2px rgba(98, 171, 178, 0.7);*/
@@ -178,13 +183,13 @@ body .devices-block .devices-repeat .uptime.selected {
 }
 body .devices-block .legend {
   font-family: "RobotoRegular";
-  font-size: 20px;
+  font-size: 30px;
   line-height: 20px;
   color: #fff;
   font-weight: normal;
   white-space: nowrap;
   text-transform: uppercase;
-  margin-bottom: 5px;
+  margin-bottom: 30px;
   margin-top: 2%;
   /*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
   text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
@@ -200,7 +205,7 @@ body .devices-block .legend .lgnd_conn,
 body .devices-block .legend .lgnd_fb,
 body .devices-block .legend .lgnd_lb {
   display: table-cell;
-  padding-right: 60px;
+  padding-right: 100px;
 }
 body .devices-block .legend .lgnd_dns .lgnd_color {
   width: 20px;
@@ -234,20 +239,31 @@ body .devices-block .legend .lgnd_lb .lgnd_color {
 }
 body .devices-block .time_display {
   font-family: "RobotoRegular";
-  font-size: 20px;
+  font-size: 30px;
   line-height: 20px;
   color: #fff;
   font-weight: normal;
   white-space: nowrap;
   /*text-transform: uppercase;*/
   margin-bottom: 5px;
+  margin-top: 15px;
   /*.text-image-mask(url(../img/text-mask.png) repeat 0 0);*/
   text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
   -webkit-text-fill-color: #ccc;
   -moz-text-fill-color: #ccc;
   text-fill-color: #ccc;
-  margin-left: 15%;
+  margin-left: 0;
   padding: 0 0 1px 5px;
+}
+body .devices-block .time_display #AppName {
+  text-transform: uppercase;
+  margin-top: 1%;
+  display: table-cell;
+  padding-right: 30px;
+  min-width: 180px;
+  background: #3c3c3c;
+  padding: 2% 1%;
+  text-align: center;
 }
 body .devices-block .time_display #time_DNStime,
 body .devices-block .time_display #time_SSLtime,
@@ -255,17 +271,17 @@ body .devices-block .time_display #time_Ctime,
 body .devices-block .time_display #time_FBtime,
 body .devices-block .time_display #time_LBtime {
   display: table-cell;
-  min-width: 125px;
+  min-width: 185px;
 }
-body .devices-block .time_display #time_Ctime {
-  min-width: 175px;
-}
-body .devices-block .time_display #time_FBtime {
+body .devices-block .time_display #time_DNStime {
+  padding-left: 40px;
   min-width: 190px;
 }
-body .devices-block .time_display #AppName {
-  text-transform: uppercase;
-  margin-top: 1%;
+body .devices-block .time_display #time_Ctime {
+  min-width: 265px;
+}
+body .devices-block .time_display #time_FBtime {
+  min-width: 290px;
 }
 body .k2-noc-screen-footer {
   background: rgba(16, 20, 23, 0.5);
@@ -290,8 +306,9 @@ body .k2-noc-screen-footer .logo {
   display: table-cell;
   vertical-align: middle;
   text-align: right;
-  padding-right: 1%;
 }
 body .k2-noc-screen-footer .logo img {
-  width: 100%;
+  width: 150px;
+  padding: 7px 15px 0 0;
+  box-sizing: border-box;
 }

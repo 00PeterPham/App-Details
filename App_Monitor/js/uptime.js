@@ -1,9 +1,3 @@
-//Refreshes page after x milliseconds
-// setInterval(function() {
-// }, 130000);
-
-// }, 9999999999);
-
 var uptimeApp = angular.module('uptimeApp',[]);
 
 uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){	
@@ -91,13 +85,15 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 						FBtime[i] = data[i].TTFB;
 						LBtime[i] = data[i].TTLB;
 
-						// console.log(SSLtime[i]);
+						console.log("LBtimes  " + LBtime[i]);
 
-						sumDNS += parseInt( DNStime[i], 10 );	
-						sumSSL += parseInt( SSLtime[i], 10 );
-						sumCON += parseInt( Ctime[i], 10 );
-						sumFB += parseInt( FBtime[i], 10 );
-						sumLB += parseInt( LBtime[i], 10 );				
+						sumDNS += parseFloat( DNStime[i], 10 );	
+						sumSSL += parseFloat( SSLtime[i], 10 );
+						sumCON += parseFloat( Ctime[i], 10 );
+						sumFB += parseFloat( FBtime[i], 10 );
+						sumLB += parseFloat( LBtime[i], 10 );		
+
+						console.log("sumLB " + sumLB);
 					});
 					// console.log("SUM " + sumSSL);
 					// console.log("arrayLength " + arrayLength);
@@ -108,7 +104,7 @@ uptimeApp.controller('uptimeCTRL', ['$scope', '$http', function (scope, http){
 					var avgFB = sumFB/data.length;
 					var avgLB = sumLB/data.length;
 
-					// console.log("AVG " + avgLB);	
+					console.log("AVG LB " + avgLB);	
 					
 					var statusColorArray = document.getElementsByClassName("status-color");	
 
